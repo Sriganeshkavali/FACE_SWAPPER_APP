@@ -35,17 +35,26 @@ pip install -r requirements.txt
 
 ## Project Structure:
 * Ensure your project structure looks like this:
-('''
+
 face-swapper/
 ├── app.py
+
 ├── image_process.py
+
 ├── templates/
+
 │   └── index.html
+
 └── static/
+
     ├── css/
+
     │   └── styles.css
+
     ├── uploads/
+
     └── results/     )
+
 The uploads and results directories should be created manually if they don't exist.
 
 ## Run the application:
@@ -62,3 +71,4 @@ Click the "Swap Faces" button.
 
 
 The application will process the images and display the original and swapped versions below the upload form.
+

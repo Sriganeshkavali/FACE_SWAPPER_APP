@@ -53,7 +53,7 @@ face-swapper/
 
     ├── uploads/
 
-    └── results/     )
+    └── results/     
 
 The uploads and results directories should be created manually if they don't exist.
 
@@ -71,4 +71,5 @@ Click the "Swap Faces" button.
 
 
 The application will process the images and display the original and swapped versions below the upload form.
+
 

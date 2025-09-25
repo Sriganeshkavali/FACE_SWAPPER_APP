@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Swapper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>🎭 Face Swapper</h1>
+        <p>Swap faces between two images and see the magic!</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flashes">
+                    {% for message in messages %}
+                        <div class="alert-box">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/swap" method="post" enctype="multipart/form-data" class="upload-form">
+            <div class="file-input-group">
+                <label for="image1" class="custom-file-upload">
+                    <span class="upload-icon">⬆️</span>
+                    Choose First Image
+                </label>
+                <input type="file" name="image1" id="image1" accept="image/*" required>
+                <span id="file-name-1">No file chosen</span>
+            </div>
+            <div class="file-input-group">
+                <label for="image2" class="custom-file-upload">
+                    <span class="upload-icon">⬆️</span>
+                    Choose Second Image
+                </label>
+                <input type="file" name="image2" id="image2" accept="image/*" required>
+                <span id="file-name-2">No file chosen</span>
+            </div>
+            <button type="submit" class="swap-button">Swap Faces</button>
+        </form>
+
+        {% if swapped_img1 and swapped_img2 %}
+            <div class="results">
+                <h2>✨ Swapped Faces</h2>
+                <div class="image-grid">
+                    <div class="image-box">
+                        <img src="{{ url_for('static', filename='uploads/' + original_img1.split('/')[-1]) }}" alt="Original Image 1">
+                        <p>Original</p>
+                    </div>
+                    <div class="image-box">
+                        <img src="{{ url_for('static', filename='uploads/' + original_img2.split('/')[-1]) }}" alt="Original Image 2">
+                        <p>Original</p>
+                    </div>
+                    <div class="image-box">
+                        <img src="{{ url_for('static', filename='results/' + swapped_img1.split('/')[-1]) }}" alt="Swapped Image 1">
+                        <p>Swapped</p>
+                    </div>
+                    <div class="image-box">
+                        <img src="{{ url_for('static', filename='results/' + swapped_img2.split('/')[-1]) }}" alt="Swapped Image 2">
+                        <p>Swapped</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.getElementById('image1').addEventListener('change', function(e) {
+            var fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.getElementById('file-name-1').textContent = fileName;
+        });
+        document.getElementById('image2').addEventListener('change', function(e) {
+            var fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.getElementById('file-name-2').textContent = fileName;
+        });
+    </script>
+</body>
+</html>

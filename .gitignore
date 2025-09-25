@@ -1,0 +1,7 @@
+# Example .gitignore content
+myenv/
+__pycache__/
+*.pyc
+static/uploads/
+static/results/
+inswapper_128.onnx

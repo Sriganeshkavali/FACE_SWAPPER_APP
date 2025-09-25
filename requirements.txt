@@ -1,0 +1,7 @@
+opencv-python
+numpy
+insightface
+glob2
+matplotlib
+onnxruntime
+flask
